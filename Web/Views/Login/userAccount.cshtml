@@ -1,0 +1,16 @@
+﻿@{ ViewData["Title"] = ViewBag.Username; }
+
+@Html.AntiForgeryToken()
+
+<div class="card">
+    <div class="card-body">
+        <br />
+        <br />
+        <br /><br />
+        <br />
+        <br />
+        <br />
+
+        Hello, @Model.Username
+    </div>
+</div>

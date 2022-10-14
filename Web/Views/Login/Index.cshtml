@@ -1,0 +1,66 @@
+﻿
+@model IEnumerable<Core.Entities.User>
+
+@{ ViewData["Title"] = "Index"; }
+
+<divstyle =" padding:5%;">
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+
+    <form method="get" asp-action="Index">
+        <p>
+            <input type="search" placeholder="TSearch" value="@ViewData["GetGardinDetails"]" class="form-control rounded" aria-describedby="search-addon" name="Tearm" style="widh:500px;" />
+        </p>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateOfBirth)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Avatar)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Username)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateOfBirth)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Password)
+    </td>
+
+    <td>
+        <img src="~/img/portfolio/@item.Avatar" class="img-thumbnail" style="width:64px; height:64px;" />
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> |
+        <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-eye"></i></a> |
+        <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+    </td>
+</tr>
+}
+        </tbody>
+    </table>
+
+    </div>

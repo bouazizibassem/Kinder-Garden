@@ -1,0 +1,53 @@
+﻿@model Web.ViewModels.UserViewModel
+
+@{ ViewData["Title"] = "Login"; }
+
+@if ((bool)ViewData["HasError"])
+{
+<div class="alert alert-danger" style="margin-top:80px"  role="alert">
+    Wrong email or password!
+</div>}
+
+@Html.AntiForgeryToken()
+<br />
+<br />
+<br />
+<br />
+<form asp-controller="Login" asp-action="Login" method="post">
+    <div class="card mx-auto" style="width: 25%;">
+        <div class="card-body">
+            <h5 class="card-title disable-text">Login</h5>
+            <hr />
+            <div class="form-group">
+                <input type="email" placeholder="Email" class="form-control" asp-for="EmailID">
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Password" class="form-control" asp-for="Password">
+            </div>
+            <br />
+            <button type="submit" class="btn btn-lg btn-primary">Login</button>
+        </div>
+    </div>
+
+</form>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<br />
+
+

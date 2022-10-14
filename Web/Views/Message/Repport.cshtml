@@ -1,0 +1,59 @@
+﻿@model Web.ViewModels.MsgViewModel
+@{
+    ViewData["Title"] = "Repport";
+}
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<h1>Report</h1>
+
+
+@Html.AntiForgeryToken()
+
+<form asp-controller="Message" asp-action="Repport" method="post">
+    <div class="card mx-auto" style="width: 50rem;">
+        <div class="card-body">
+
+            <div class="form-group row">
+
+
+
+                <div class="col">
+                    <label class="disable-text">MailGarden</label>
+                    <input type="text" class="form-control" asp-for="MailGardin">
+                </div>
+
+
+                <div class="col">
+                    <label class="disable-text">Subject</label>
+                    <input type="text" class="form-control" asp-for="Subject">
+                </div>
+
+
+
+
+            </div>
+
+            <div class="col">
+                <label class="disable-text">Message</label>
+                <input type="text" class="form-control" asp-for="Message">
+            </div>
+
+        </div>
+
+
+
+
+
+        <hr />
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Repport" class="btn btn-success" />
+        </div>
+    </div>
+    </div>
+</form>
+

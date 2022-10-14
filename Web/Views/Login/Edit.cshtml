@@ -1,0 +1,132 @@
+﻿@model UserViewModel
+
+@{ ViewData["Title"] = "Edit"; }
+
+<div style="margin:10%; padding:5%;">
+    <h1>Edit</h1>
+
+    <h4>USers</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Username" class="control-label"></label>
+                    <input asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="col">
+                        <label class="disable-text">Date of birth</label>
+                        <input type="date" asp-for="DateOfBirth" class="form-control datepicker">
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="disable-text">Gender</label>
+                    <select asp-for="Gender" class="form-control">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="disable-text">Role</label>
+                    <select asp-for="Role" class="form-control">
+                        <option value="Parent">Parent</option>
+                        <option value="Responsable">Responsable</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EmailID" class="control-label"></label>
+                    <input asp-for="EmailID" class="form-control" />
+                    <span asp-validation-for="EmailID" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserTel" class="control-label"></label>
+                    <input asp-for="UserTel" class="form-control" />
+                    <span asp-validation-for="UserTel" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Avatar" class="control-label"></label>
+                    <input asp-for="File" type="file" class="form-control" />
+                    <span asp-validation-for="Avatar" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @{ var sessionName = new Byte[30];
+                        var IsLoggedIn = "";
+                        var IsAdmin = "";
+                        var Role = "";
+                        var Id = "";
+                        if (Context.Session.TryGetValue("IsLoggedIn", out sessionName))
+                        {
+                            IsLoggedIn = System.Text.Encoding.Default.GetString(sessionName);
+                        }
+                        else
+                        {
+                            IsLoggedIn = "false";
+                        }
+                        if (Context.Session.TryGetValue("IsAdmin", out sessionName))
+                        {
+                            IsAdmin = System.Text.Encoding.Default.GetString(sessionName);
+                        }
+                        else
+                        {
+                            IsAdmin = "false";
+                        }
+                        if (Context.Session.TryGetValue("Role", out sessionName))
+                        {
+                            Role = System.Text.Encoding.Default.GetString(sessionName);
+                        }
+                        else
+                        {
+                            Role = "Parent";
+                        } }
+
+                    @if (IsAdmin.Equals("true"))
+
+
+                    {
+
+
+                <label class="disable-text">IsAdmin</label>
+                                <select asp-for="Admin" class="form-control">
+                                    <option value="True">Admin</option>
+                                    <option value="False">User</option>
+                                </select>}
+                </div>
+
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index" class="btn btn-outline-dark">Back to List</a>
+    </div>
+
+
+</div>

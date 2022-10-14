@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Core.Entities.Event>
+
+@{ ViewData["Title"] = "Index"; }
+
+<div style=" padding:12%;">
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+    <form method="get" asp-action="Index">
+        <p>
+            <input type="search" placeholder="Tape ici" value="@ViewData["GetGardinDetails"]" class="form-control rounded" aria-describedby="search-addon" name="Tearm" style="widh:500px;" />
+        </p>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateEvent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DescriptionE)
+                </th>
+
+
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageEvent)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.EventName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateEvent)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DescriptionE)
+    </td>
+
+    <td>
+        <img src="~/img/portfolio/@item.ImageEvent" class="img-thumbnail" style="width:64px; height:64px;" />
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> |
+        <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-eye"></i></a> |
+        <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+    </td>
+</tr>}
+        </tbody>
+    </table>
+
+</div>

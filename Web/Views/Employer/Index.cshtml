@@ -1,0 +1,156 @@
+﻿@model IEnumerable<Core.Entities.Employer>
+
+@{ ViewData["Title"] = "Index"; }
+
+<div style="margin:16%; padding:12%;">
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+
+    <form method="get" asp-action="Index" asp-controller="Employer">
+        <p>
+            <input type="search" placeholder="Search" value="@ViewData["EmplDetails"]" class="form-control rounded" aria-describedby="search-addon" name="Tearm" style="widh:500px;" />
+        </p>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.First_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Last_Name)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.NumTel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageUrl)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.First_Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Last_Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumTel)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Age)
+    </td>
+    <td>
+        <img src="~/img/portfolio/@item.ImageUrl" class="img-thumbnail" style="width:64px; height:64px;" />
+    </td>@**@
+    <td>
+
+
+        @{ var sessionName = new Byte[30];
+            var IsLoggedIn = "";
+            var IsAdmin = "";
+            var Role = "";
+            var Id = "";
+            if (Context.Session.TryGetValue("IsLoggedIn", out sessionName))
+            {
+                IsLoggedIn = System.Text.Encoding.Default.GetString(sessionName);
+            }
+            else
+            {
+                IsLoggedIn = "false";
+            }
+            if (Context.Session.TryGetValue("IsAdmin", out sessionName))
+            {
+                IsAdmin = System.Text.Encoding.Default.GetString(sessionName);
+            }
+            else
+            {
+                IsAdmin = "false";
+            }
+            if (Context.Session.TryGetValue("Role", out sessionName))
+            {
+                Role = System.Text.Encoding.Default.GetString(sessionName);
+            }
+            else
+            {
+                Role = "Parent";
+            } }
+
+        @if (IsLoggedIn.Equals("true"))
+        {
+
+
+
+
+            if (IsAdmin.Equals("true"))
+
+
+            {<a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> }
+                                                            else
+
+                                                            if (Role.Equals("Responsable"))
+                                                            {
+                                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                                                                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>}
+
+
+
+
+
+
+
+
+                                                                                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-eye"></i></a> |
+
+    </td>
+</tr>}
+        </tbody>
+    </table>
+
+</div>

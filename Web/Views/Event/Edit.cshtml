@@ -1,0 +1,49 @@
+﻿@model EventViewModel
+
+@{ ViewData["Title"] = "Edit"; }
+
+<div style="margin:16%; padding:12%;">
+    <h1>Edit</h1>
+
+    <h4>PortfolioItem</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="EventName" class="control-label"></label>
+                    <input asp-for="EventName" class="form-control" />
+                    <span asp-validation-for="EventName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DateEvent" class="control-label"></label>
+                    <input asp-for="DateEvent" class="form-control" />
+                    <span asp-validation-for="DateEvent" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DescriptionE" class="control-label"></label>
+                    <input asp-for="DescriptionE" class="form-control" />
+                    <span asp-validation-for="DescriptionE" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageEvent" class="control-label"></label>
+                    <input asp-for="File" type="file" class="form-control" />
+                    <span asp-validation-for="ImageEvent" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index" class="btn btn-outline-dark">Back to List</a>
+    </div>
+
+
+</div>

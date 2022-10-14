@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Portfolio - lES JARDIN D'Enfant</title>
+
+    <!-- Custom fonts for this theme -->
+    <link href="~/fonts/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="~/css/freelancer.css" rel="stylesheet">
+
+
+</head>
+
+<body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" style="background: linear-gradient( 87deg, #ffffff 0, #1a174d 100%) !important;
+    " id="mainNav">
+        <div class="container">
+            <a href="/Home/Index"><img src="~/img/Logo.png" style="border-radius:20%; height:50%;width:50%;margin-left:-120%;" /></a>
+            <div class="input-group rounded">
+                <form method="get" asp-action="Index">
+                    <p>
+                        <input type="search" placeholder="Search" value="@ViewData["GetGardinDetails"]" class="form-control rounded" aria-describedby="search-addon" name="Tearm" style="widh:500px;" />
+                    </p>
+                </form>
+            </div>
+            <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+                    type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="navbar-nav ml-auto">
+                @{ var sessionName = new Byte[30];
+                    var IsLoggedIn = "";
+                    var IsAdmin = "";
+                    var Role = "";
+                    var Id = "";
+                    if (Context.Session.TryGetValue("IsLoggedIn", out sessionName))
+                    {
+                        IsLoggedIn = System.Text.Encoding.Default.GetString(sessionName);
+                    }
+                    else
+                    {
+                        IsLoggedIn = "false";
+                    }
+                    if (Context.Session.TryGetValue("IsAdmin", out sessionName))
+                    {
+                        IsAdmin = System.Text.Encoding.Default.GetString(sessionName);
+                    }
+                    else
+                    {
+                        IsAdmin = "false";
+                    }
+                    if (Context.Session.TryGetValue("Role", out sessionName))
+                    {
+                        Role = System.Text.Encoding.Default.GetString(sessionName);
+                    }
+                    else
+                    {
+                        Role = "Parent";
+                    } }
+
+                @if (IsLoggedIn.Equals("true"))
+                {
+
+
+
+
+                    if (IsAdmin.Equals("true"))
+
+
+                    {
+                        <li>
+                            <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle"style="margin-left:200px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Menu
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="/PortfolioItems/Create" class="dropdown-item" type="button">Add Garden</a>
+                                   
+                                
+                                <a href="/PortfolioItems/Index/@Id" class="dropdown-item" type="button">list Garden Kids</a>
+                                    
+                                
+                                <a href="/Login/Index/@Id" class="dropdown-item" type="button">list Users </a>
+                                    
+                               
+                            </div>
+                           </div>
+
+                </li>
+
+
+
+
+
+
+
+            }
+            else
+
+                  if (Role.Equals("Responsable"))
+            {
+                <li> 
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a asp-controller="Login" asp-action="ResponsableAccount" type="button" class="btn btn-secondary">Account</a>
+
+                  
+                  
+                </li>
+            }
+            else
+
+        if (Role.Equals("Parent"))
+            {
+
+
+            <li >
+             
+                
+                
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a asp-controller="PortfolioItems" asp-action="Subscribe" type="button" class="btn btn-secondary">Subscribe</a>
+                   
+                </div>
+
+
+            </li>
+
+
+            }
+                   
+
+
+            <li >
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a asp-controller="Home" asp-action="Index" type="button" class="btn btn-secondary">Acceuil</a>
+
+                </div>
+
+               
+            </li>
+
+
+            <li>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a asp-controller="Login" asp-action="Logout" type="button" class="btn btn-secondary">Logout</a>
+
+                </div>
+               
+            </li>
+        }
+
+
+
+        else
+        {
+
+
+
+            <li class="nav-item mx-0 mx-lg-1">
+                <a class="nav-link py-3 %-0 %-lg-3 rounded js-scroll-trigger" asp-controller="Login" asp-action="Login">Login</a>
+
+            </li>
+
+
+
+            <li class="nav-item mx-0 mx-lg-1">
+                <a class="nav-link py-3 %-0 %-lg-3 rounded js-scroll-trigger" asp-controller="Login" asp-action="Register">Register</a>
+            </li>
+        }
+
+
+
+
+
+
+
+                </ul>
+                </div>
+                
+            </nav>
+
+
+    <div>
+
+
+
+        <br />
+        <br />
+
+        <Br />
+        <br />
+        <br />
+        @RenderBody()
+    </div>
+    <!-- Footer -->
+    <footer class="footer text-center" style=" background-color: #FFAE42;">
+        <div class="container">
+            <div class="row">
+
+                <!-- Footer Social Icons -->
+                <div class="col-lg-4 mb-5 mb-lg-0" style="margin:auto">
+                    <h4 class="text-uppercase mb-4">Around the Web</h4>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#">
+                        <i class="fab fa-fw fa-facebook-f"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#">
+                        <i class="fab fa-fw fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#">
+                        <i class="fab fa-fw fa-linkedin-in"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#">
+                        <i class="fab fa-fw fa-dribbble"></i>
+                    </a>
+                </div>
+
+                <!-- Footer About Text -->
+
+
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- Copyright Section -->
+    <section class="copyright py-4 text-center text-white">
+        <div class="container">
+            <small>Copyright &copy; Your Website 2019</small>
+        </div>
+    </section>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="~/js/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="~/js/freelancer.min.js"></script>
+
+</body>
+
+</html>

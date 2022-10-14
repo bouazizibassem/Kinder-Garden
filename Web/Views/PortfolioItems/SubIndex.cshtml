@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Core.Entities.Abonner>
+
+@{ ViewData["Title"] = "Index"; }
+
+<div style="padding:120px;">
+    <h1>Index</h1>
+
+    
+    <form method="get" asp-action="SubIndex">
+        <p>
+            <input type="search" placeholder="Tape ici" value="@ViewData["AbnDetails"]" class="form-control rounded" aria-describedby="search-addon" name="Tearm" style="widh:500px;" />
+        </p>
+    </form>
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.NomJardin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>
+
+                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.NomJardin)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.date)
+    </td>
+  
+
+    
+    
+    <td>
+
+        @*<a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>*@
+    </td>
+</tr>
+       }
+        </tbody>
+    </table>
+
+</div>
